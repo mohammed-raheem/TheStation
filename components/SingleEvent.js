@@ -10,11 +10,11 @@ import {
   Button,
 } from 'react-native-paper';
 
-import ArrowIcon from '../assets/ArrowIcon';
-import ShareIcon from '../assets/ShareIcon';
-import ClockIcon from '../assets/ClockIcon';
-import CalenderIcon from '../assets/CalenderIcon';
-import PriceIcon from '../assets/PriceIcon';
+import ArrowIcon from '../assets/icons/ArrowIcon';
+import ShareIcon from '../assets/icons/ShareIcon';
+import ClockIcon from '../assets/icons/ClockIcon';
+import CalenderIcon from '../assets/icons/CalenderIcon';
+import PriceIcon from '../assets/icons/PriceIcon';
 import SingleEventVector from '../assets/SingleEventVector';
 
 function SingleEvent({navigation}) {

@@ -4,9 +4,9 @@ import {FlatList} from 'react-native';
 import {Caption, useTheme, Title, Card} from 'react-native-paper';
 
 import AppBar from './AppBar';
-import ClockIcon from '../assets/ClockIcon';
-import CalenderIcon from '../assets/CalenderIcon';
-import PriceIcon from '../assets/PriceIcon';
+import ClockIcon from '../assets/icons/ClockIcon';
+import CalenderIcon from '../assets/icons/CalenderIcon';
+import PriceIcon from '../assets/icons/PriceIcon';
 import Squares from '../assets/Squares';
 
 function WithEvents({navigation}) {

@@ -4,7 +4,7 @@ import {FlatList} from 'react-native';
 import {Caption, useTheme, Title, Card} from 'react-native-paper';
 
 import AppBar from './AppBar';
-import CalenderIcon from '../assets/CalenderIcon';
+import CalenderIcon from '../assets/icons/CalenderIcon';
 
 function News({navigation}) {
   const [newsList, setNewsList] = useState([

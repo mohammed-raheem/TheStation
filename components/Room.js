@@ -15,15 +15,15 @@ import {
   Button,
 } from 'react-native-paper';
 
-import ArrowIcon from '../assets/ArrowIcon';
-import WifiIcon from '../assets/WifiIcon';
-import BoardIcon from '../assets/BoardIcon';
-import AudioIcon from '../assets/AudioIcon';
-import CoolingIcon from '../assets/CoolingIcon';
-import PersonIcon from '../assets/PersonIcon';
-import StageIcon from '../assets/StageIcon';
-import ChairIcon from '../assets/ChairIcon';
-import DatashowIcon from '../assets/DatashowIcon';
+import ArrowIcon from '../assets/icons/ArrowIcon';
+import WifiIcon from '../assets/icons/WifiIcon';
+import BoardIcon from '../assets/icons/BoardIcon';
+import AudioIcon from '../assets/icons/AudioIcon';
+import CoolingIcon from '../assets/icons/CoolingIcon';
+import PersonIcon from '../assets/icons/PersonIcon';
+import StageIcon from '../assets/icons/StageIcon';
+import ChairIcon from '../assets/icons/ChairIcon';
+import DatashowIcon from '../assets/icons/DatashowIcon';
 
 function Room({navigation}) {
   const {colors, fonts} = useTheme();

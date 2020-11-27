@@ -13,12 +13,12 @@ import {
 } from 'react-native-paper';
 
 import AppBar from './AppBar';
-import NotificationIcon from '../assets/NotificationIcon';
-import CalenderIcon from '../assets/CalenderIcon';
-import LanguageIcon from '../assets/LanguageIcon';
-import AboutIcon from '../assets/AboutIcon';
-import ContactIcon from '../assets/ContactIcon';
-import LogoutIcon from '../assets/LogoutIcon';
+import NotificationIcon from '../assets/icons/NotificationIcon';
+import CalenderIcon from '../assets/icons/CalenderIcon';
+import LanguageIcon from '../assets/icons/LanguageIcon';
+import AboutIcon from '../assets/icons/AboutIcon';
+import ContactIcon from '../assets/icons/ContactIcon';
+import LogoutIcon from '../assets/icons/LogoutIcon';
 
 function Settings(props) {
   const {colors, fonts} = useTheme();

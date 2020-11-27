@@ -3,10 +3,10 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import {useTheme, Text} from 'react-native-paper';
 import {StyleSheet} from 'react-native';
 
-import NewsIcon from './assets/NewsIcon';
-import EventsIcon from './assets/EventsIcon';
-import SpacesIcon from './assets/SpacesIcon';
-import SettingsIcon from './assets/SettingsIcon';
+import NewsIcon from './assets/icons/NewsIcon';
+import EventsIcon from './assets/icons/EventsIcon';
+import SpacesIcon from './assets/icons/SpacesIcon';
+import SettingsIcon from './assets/icons/SettingsIcon';
 
 import NewsStackScreen from './routes/NewsStack';
 import EventsStackScreen from './routes/EventsStack';

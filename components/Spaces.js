@@ -4,14 +4,14 @@ import {FlatList} from 'react-native';
 import {Caption, useTheme, Title, Card, Text} from 'react-native-paper';
 
 import AppBar from './AppBar';
-import WifiIcon from '../assets/WifiIcon';
-import DatashowIcon from '../assets/DatashowIcon';
-import BoardIcon from '../assets/BoardIcon';
-import AudioIcon from '../assets/AudioIcon';
-import CoolingIcon from '../assets/CoolingIcon';
-import ChairIcon from '../assets/ChairIcon';
-import StageIcon from '../assets/StageIcon';
-import PersonIcon from '../assets/PersonIcon';
+import WifiIcon from '../assets/icons/WifiIcon';
+import DatashowIcon from '../assets/icons/DatashowIcon';
+import BoardIcon from '../assets/icons/BoardIcon';
+import AudioIcon from '../assets/icons/AudioIcon';
+import CoolingIcon from '../assets/icons/CoolingIcon';
+import ChairIcon from '../assets/icons/ChairIcon';
+import StageIcon from '../assets/icons/StageIcon';
+import PersonIcon from '../assets/icons/PersonIcon';
 
 function Spaces({navigation}) {
   const {colors, fonts} = useTheme();

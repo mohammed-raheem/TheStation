@@ -3,10 +3,10 @@ import {View, StyleSheet, ScrollView} from 'react-native';
 import {Image, TouchableOpacity} from 'react-native';
 import {Caption, useTheme, Title, Paragraph} from 'react-native-paper';
 
-import ArrowIcon from '../assets/ArrowIcon';
-import ShareIcon from '../assets/ShareIcon';
-import CalenderIcon from '../assets/CalenderIcon';
-import UserIcon from '../assets/UserIcon';
+import ArrowIcon from '../assets/icons/ArrowIcon';
+import ShareIcon from '../assets/icons/ShareIcon';
+import CalenderIcon from '../assets/icons/CalenderIcon';
+import UserIcon from '../assets/icons/UserIcon';
 
 function SingleNews({navigation}) {
   const {colors, fonts} = useTheme();
