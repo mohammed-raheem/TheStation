@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import News2 from '../components/News2';
+import News3 from '../components/News3';
 import SingleNews from '../components/SingleNews';
 
 const NewsStack = createStackNavigator();
@@ -11,7 +11,7 @@ export default function NewsStackScreen() {
     <NewsStack.Navigator>
       <NewsStack.Screen
         name="News"
-        component={News2}
+        component={News3}
         options={{
           headerShown: false,
         }}
