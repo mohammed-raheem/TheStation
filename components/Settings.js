@@ -97,6 +97,7 @@ function Settings(props) {
       <View style={{marginTop: 25}}>
         {settingOptions.map((item) => (
           <List.Item
+            key={item.key}
             title={
               item.badge ? (
                 <Text>
@@ -112,11 +113,12 @@ function Settings(props) {
             }
             left={() => item.icon}
             onPress={() => console.log('Setting item Pressed')}
-            style={{marginBottom: 25}}
+            style={{marginBottom: 30}}
             titleStyle={{
               color: '#2B2B2B',
               fontFamily: fonts.book.fontFamily,
               marginTop: -8,
+              marginBottom: -8,
             }}
           />
         ))}
@@ -132,6 +134,7 @@ function Settings(props) {
             color: '#FF0F35',
             fontFamily: fonts.book.fontFamily,
             marginTop: -8,
+            marginBottom: -8,
             alignSelf: 'flex-start',
           }}
         />
