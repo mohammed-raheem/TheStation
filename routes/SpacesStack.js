@@ -6,23 +6,23 @@ import Room from '../components/Room';
 
 const SpacesStack = createStackNavigator();
 
-export default function SpacesStackScreen() {
+export default function SpacesStackScreen({setBarHeight}) {
   return (
     <SpacesStack.Navigator>
       <SpacesStack.Screen
         name="Spaces"
-        component={Spaces}
         options={{
           headerShown: false,
-        }}
-      />
+        }}>
+        {(props) => <Spaces {...props} setBarHeight={setBarHeight} />}
+      </SpacesStack.Screen>
       <SpacesStack.Screen
         name="Room"
-        component={Room}
         options={{
           headerShown: false,
-        }}
-      />
+        }}>
+        {(props) => <Room {...props} setBarHeight={setBarHeight} />}
+      </SpacesStack.Screen>
     </SpacesStack.Navigator>
   );
 }

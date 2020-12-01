@@ -9,7 +9,7 @@ import CalenderIcon from '../assets/icons/CalenderIcon';
 import PriceIcon from '../assets/icons/PriceIcon';
 import Squares from '../assets/Squares';
 
-function WithEvents({navigation}) {
+function WithEvents({navigation, setBarHeight}) {
   const [eventsList, setEventsList] = useState([
     {
       key: '1',
@@ -114,7 +114,10 @@ function WithEvents({navigation}) {
         renderItem={({item}) => (
           <Card
             style={styles.cardContainer}
-            onPress={() => navigation.navigate('SingleEvent')}>
+            onPress={() => {
+              navigation.navigate('SingleEvent');
+              setBarHeight(0);
+            }}>
             <Card.Cover source={item.imageUrl} />
             <Card.Content>
               <Title style={styles.cardTitle}>{item.title}</Title>

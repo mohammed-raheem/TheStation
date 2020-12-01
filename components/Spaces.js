@@ -13,7 +13,7 @@ import ChairIcon from '../assets/icons/ChairIcon';
 import StageIcon from '../assets/icons/StageIcon';
 import PersonIcon from '../assets/icons/PersonIcon';
 
-function Spaces({navigation}) {
+function Spaces({navigation, setBarHeight}) {
   const {colors, fonts} = useTheme();
   const [spacesList, setSpacesList] = useState([
     {
@@ -169,7 +169,10 @@ function Spaces({navigation}) {
         renderItem={({item}) => (
           <Card
             style={styles.cardContainer}
-            onPress={() => navigation.navigate('Room')}>
+            onPress={() => {
+              navigation.navigate('Room');
+              setBarHeight(0);
+            }}>
             <Card.Cover source={item.imageUrl} />
             <View style={styles.roomFigure}>
               <View style={styles.roomBg}></View>

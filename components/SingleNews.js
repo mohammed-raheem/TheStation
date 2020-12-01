@@ -8,7 +8,7 @@ import ShareIcon from '../assets/icons/ShareIcon';
 import CalenderIcon from '../assets/icons/CalenderIcon';
 import UserIcon from '../assets/icons/UserIcon';
 
-function SingleNews({navigation}) {
+function SingleNews({navigation, setBarHeight}) {
   const {colors, fonts} = useTheme();
   const styles = StyleSheet.create({
     singleNewsPage: {
@@ -102,7 +102,10 @@ function SingleNews({navigation}) {
           />
           <TouchableOpacity
             style={styles.arrowIcon}
-            onPress={() => navigation.goBack()}>
+            onPress={() => {
+              navigation.goBack();
+              setBarHeight(65);
+            }}>
             <ArrowIcon />
           </TouchableOpacity>
           <View style={styles.shareIcon}>

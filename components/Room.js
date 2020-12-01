@@ -25,7 +25,7 @@ import StageIcon from '../assets/icons/StageIcon';
 import ChairIcon from '../assets/icons/ChairIcon';
 import DatashowIcon from '../assets/icons/DatashowIcon';
 
-function Room({navigation}) {
+function Room({navigation, setBarHeight}) {
   const {colors, fonts} = useTheme();
   const styles = StyleSheet.create({
     roomPage: {
@@ -139,7 +139,10 @@ function Room({navigation}) {
           </View>
           <TouchableOpacity
             style={styles.arrowIcon}
-            onPress={() => navigation.goBack()}>
+            onPress={() => {
+              navigation.goBack();
+              setBarHeight(65);
+            }}>
             <ArrowIcon />
           </TouchableOpacity>
           <Title style={styles.headerTitle}>Event Hall</Title>

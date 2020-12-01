@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import 'react-native-get-random-values';
 import {nanoid} from 'nanoid';
-// import {LogBox} from 'react-native';
-// LogBox.ignoreAllLogs();
+import {LogBox} from 'react-native';
+LogBox.ignoreAllLogs();
 import {
   Image,
   View,
@@ -94,30 +94,6 @@ export default class News3 extends React.Component {
     } else {
       this.refs.list.addItems(data);
     }
-
-    // fetch('http://huaban.com/boards/17649987/?limit=10', {
-    //   headers: {
-    //     'X-Requested-With': 'XMLHttpRequest',
-    //   },
-    // })
-    // .then((res) => res.json())
-    // .then((data) => {
-    //   this.setState({loading: false});
-    //   data = newsList.map((item) => {
-    //     return {
-    //       image: item.cardImage,
-    //       title: item.title,
-    //       date: item.date,
-    //       key: item.key,
-    //       // height: (columnWidth / item.file.width) * item.file.height,
-    //     };
-    //   });
-    //   if (this.state.withHeight) {
-    //     this.refs.list.addItemsWithHeight(data);
-    //   } else {
-    //     this.refs.list.addItems(data);
-    //   }
-    // });
   }
 
   onScrollEnd(event) {
@@ -201,7 +177,10 @@ export default class News3 extends React.Component {
           renderItem={(item) => (
             <Card
               style={styles.newsCard}
-              onPress={() => this.props.navigation.navigate('SingleNews')}>
+              onPress={() => {
+                this.props.navigation.navigate('SingleNews');
+                this.props.setBarHeight(0);
+              }}>
               <Image style={styles.cardImage} source={item.image} />
               <View style={styles.cardContent}>
                 <Title style={styles.cardTitle}>{item.title}</Title>

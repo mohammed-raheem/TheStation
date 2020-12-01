@@ -17,7 +17,7 @@ import CalenderIcon from '../assets/icons/CalenderIcon';
 import PriceIcon from '../assets/icons/PriceIcon';
 import SingleEventVector from '../assets/SingleEventVector';
 
-function SingleEvent({navigation}) {
+function SingleEvent({navigation, setBarHeight}) {
   const {colors, fonts} = useTheme();
   const styles = StyleSheet.create({
     singleEventPage: {
@@ -114,7 +114,10 @@ function SingleEvent({navigation}) {
           />
           <TouchableOpacity
             style={styles.arrowIcon}
-            onPress={() => navigation.goBack()}>
+            onPress={() => {
+              navigation.goBack();
+              setBarHeight(65);
+            }}>
             <ArrowIcon />
           </TouchableOpacity>
           <View style={styles.shareIcon}>

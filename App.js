@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {useTheme, Text} from 'react-native-paper';
 import {StyleSheet} from 'react-native';
@@ -16,6 +16,7 @@ import Settings from './components/Settings';
 const Tab = createMaterialBottomTabNavigator();
 
 function App() {
+  const [barHeight, setBarHeight] = useState(65);
   const {fonts} = useTheme();
   const styles = StyleSheet.create({
     label: {
@@ -29,10 +30,11 @@ function App() {
     <Tab.Navigator
       initialRouteName="News"
       activeColor="#3D3A37"
-      barStyle={{paddingTop: 10, paddingBottom: 10}}>
+      barStyle={{paddingTop: 10, paddingBottom: 10, height: barHeight}}>
       <Tab.Screen
         name="News"
-        component={NewsStackScreen}
+        // component={NewsStackScreen}
+        children={() => <NewsStackScreen setBarHeight={setBarHeight} />}
         options={{
           tabBarLabel: <Text style={styles.label}>News</Text>,
           tabBarColor: '#fff',
@@ -41,7 +43,8 @@ function App() {
       />
       <Tab.Screen
         name="Events"
-        component={EventsStackScreen}
+        // component={EventsStackScreen}
+        children={() => <EventsStackScreen setBarHeight={setBarHeight} />}
         options={{
           tabBarLabel: <Text style={styles.label}>Events</Text>,
           tabBarColor: '#fff',
@@ -50,7 +53,8 @@ function App() {
       />
       <Tab.Screen
         name="Spaces"
-        component={SpacesStackScreen}
+        // component={SpacesStackScreen}
+        children={() => <SpacesStackScreen setBarHeight={setBarHeight} />}
         options={{
           tabBarLabel: <Text style={styles.label}>Spaces</Text>,
           tabBarColor: '#fff',
