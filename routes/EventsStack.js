@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import WithEvents from '../components/WithEvents';
+import WithEvents2 from '../components/WithEvents2';
 import SingleEvent from '../components/SingleEvent';
 
 const EventsStack = createStackNavigator();
@@ -15,7 +15,7 @@ export default function EventsStackScreen({setBarHeight}) {
         options={{
           headerShown: false,
         }}>
-        {(props) => <WithEvents {...props} setBarHeight={setBarHeight} />}
+        {(props) => <WithEvents2 {...props} setBarHeight={setBarHeight} />}
       </EventsStack.Screen>
       <EventsStack.Screen
         name="SingleEvent"

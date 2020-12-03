@@ -5,15 +5,9 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
-import {
-  Caption,
-  useTheme,
-  Title,
-  Text,
-  Paragraph,
-  Button,
-} from 'react-native-paper';
+import {Caption, useTheme, Title, Text, Paragraph} from 'react-native-paper';
 
 import ArrowIcon from '../assets/icons/ArrowIcon';
 import WifiIcon from '../assets/icons/WifiIcon';
@@ -116,7 +110,21 @@ function Room({navigation, setBarHeight}) {
       marginTop: 10,
       textAlign: 'center',
     },
-    btnFree: {
+    Btn: {
+      flexDirection: 'row',
+      backgroundColor: colors.primary,
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 45,
+      marginBottom: 25,
+    },
+    btnTitle: {
+      fontFamily: fonts.bold.fontFamily,
+      color: '#3D3A37',
+      fontSize: 16,
+      // marginRight: 5,
+    },
+    btnSubTitle: {
       fontFamily: fonts.book.fontFamily,
       color: '#000',
       fontSize: 10,
@@ -237,19 +245,41 @@ function Room({navigation, setBarHeight}) {
               <Text style={styles.iconDesc}>Stage</Text>
             </View>
           </View>
-          <Button
-            mode="contained"
-            uppercase={false}
-            style={{height: 48, marginBottom: 35, justifyContent: 'center'}}
-            labelStyle={{
-              fontFamily: fonts.bold.fontFamily,
-              color: '#3D3A37',
-              fontSize: 16,
-            }}
-            onPress={() => console.log('Pressed')}>
-            Book now -{' '}
-            <Caption style={styles.btnFree}>2,000,000 IQD per hour</Caption>
-          </Button>
+          <Pressable
+            style={({pressed}) => [
+              {
+                opacity: pressed ? 0.9 : 1,
+                shadowColor: pressed ? '#000' : '#000',
+                shadowOffset: pressed
+                  ? {width: 0, height: 3}
+                  : {width: 0, height: 1},
+                shadowOpacity: pressed ? 0.27 : 0.22,
+                shadowRadius: pressed ? 4.56 : 2.22,
+                elevation: pressed ? 9 : 3,
+              },
+              styles.Btn,
+            ]}
+            onPress={console.log('Pressed')}>
+            <Text style={styles.btnTitle}>Book now - </Text>
+            <Caption style={styles.btnSubTitle}>2,000,000 IQD per hour</Caption>
+          </Pressable>
+          {/* <TouchableOpacity onPress={() => console.log('Pressed')}>
+            <Button
+              mode="contained"
+              uppercase={false}
+              style={{
+                marginBottom: 35,
+                justifyContent: 'center',
+              }}
+              labelStyle={{
+                fontFamily: fonts.bold.fontFamily,
+                color: '#3D3A37',
+                fontSize: 16,
+              }}>
+              Book now -{' '}
+              <Caption style={styles.btnFree}>2,000,000 IQD per hour</Caption>
+            </Button>
+          </TouchableOpacity> */}
         </View>
       </View>
     </ScrollView>

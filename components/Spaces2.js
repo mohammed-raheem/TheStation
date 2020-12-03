@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
-import {FlatList} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {View, FlatList, StyleSheet, Animated} from 'react-native';
 import {Caption, useTheme, Title, Card, Text} from 'react-native-paper';
+import {useIsFocused} from '@react-navigation/native';
 
-import AppBar from './AppBar';
+import AppBar2 from './AppBar2';
 import WifiIcon from '../assets/icons/WifiIcon';
 import DatashowIcon from '../assets/icons/DatashowIcon';
 import BoardIcon from '../assets/icons/BoardIcon';
@@ -13,7 +13,33 @@ import ChairIcon from '../assets/icons/ChairIcon';
 import StageIcon from '../assets/icons/StageIcon';
 import PersonIcon from '../assets/icons/PersonIcon';
 
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+
 function Spaces({navigation, setBarHeight}) {
+  const isFocused = useIsFocused();
+
+  isFocused && setBarHeight(65);
+
+  const scrollY = useRef(new Animated.Value(0)).current;
+
+  const headerTranslateY = scrollY.interpolate({
+    inputRange: [0, 80],
+    outputRange: [0, -60],
+    extrapolate: 'clamp',
+  });
+
+  const titleScale2 = scrollY.interpolate({
+    inputRange: [0, 45],
+    outputRange: [0, 45],
+    extrapolate: 'clamp',
+  });
+
+  const titleScale = scrollY.interpolate({
+    inputRange: [0, 20 / 2, 20],
+    outputRange: [1, 0.5, 0],
+    extrapolate: 'clamp',
+  });
+
   const {colors, fonts} = useTheme();
   const [spacesList, setSpacesList] = useState([
     {
@@ -91,8 +117,13 @@ function Spaces({navigation, setBarHeight}) {
     spacesPage: {
       backgroundColor: '#fff',
       flex: 1,
+      // marginBottom: -40,
+    },
+    spaces: {
       paddingLeft: 20,
       paddingRight: 20,
+      paddingBottom: 160,
+      backgroundColor: '#fff',
     },
     cardContainer: {
       marginBottom: 24,
@@ -161,49 +192,68 @@ function Spaces({navigation, setBarHeight}) {
   });
 
   return (
-    <View style={styles.spacesPage}>
-      <AppBar title="Spaces" subHeading="All Spaces & Services" />
-      <FlatList
-        data={spacesList}
-        showsVerticalScrollIndicator={false}
-        renderItem={({item}) => (
-          <Card
-            style={styles.cardContainer}
-            onPress={() => {
-              navigation.navigate('Room');
-              setBarHeight(0);
-            }}>
-            <Card.Cover source={item.imageUrl} />
-            <View style={styles.roomFigure}>
-              <View style={styles.roomBg}></View>
-              <View style={styles.roomName}>
-                <Text style={styles.room}>{item.roomName}</Text>
+    <Animated.View
+      style={[
+        styles.eventsPage,
+        {transform: [{translateY: headerTranslateY}]},
+      ]}>
+      <Animated.View>
+        <AppBar2
+          title="Spaces"
+          subHeading="All Spaces & Services"
+          titleScale={titleScale}
+          titleScale2={titleScale2}
+        />
+      </Animated.View>
+      <Animated.View style={styles.spaces}>
+        <AnimatedFlatList
+          scrollEventThrottle={16}
+          bounces={false}
+          data={spacesList}
+          showsVerticalScrollIndicator={false}
+          onScroll={Animated.event(
+            [{nativeEvent: {contentOffset: {y: scrollY}}}],
+            {useNativeDriver: true},
+          )}
+          renderItem={({item}) => (
+            <Card
+              style={styles.cardContainer}
+              onPress={() => {
+                navigation.navigate('Room');
+                setBarHeight(0);
+              }}>
+              <Card.Cover source={item.imageUrl} />
+              <View style={styles.roomFigure}>
+                <View style={styles.roomBg}></View>
+                <View style={styles.roomName}>
+                  <Text style={styles.room}>{item.roomName}</Text>
+                </View>
               </View>
-            </View>
-            <Card.Content style={styles.cardContent}>
-              <Title style={styles.price}>{item.price}</Title>
-              <View style={styles.icons}>
-                {item.wifi ? <WifiIcon style={styles.icon} /> : null}
-                {item.datashow ? <DatashowIcon style={styles.icon} /> : null}
-                {item.board ? <BoardIcon style={styles.icon} /> : null}
-                {item.audio ? <AudioIcon style={styles.icon} /> : null}
-                {item.cooling ? <CoolingIcon style={styles.icon} /> : null}
-                {item.chairs ? <ChairIcon style={styles.icon} /> : null}
-                {item.stage ? <StageIcon style={styles.icon} /> : null}
-                {item.personsNumber ? (
-                  <View style={styles.capacityContent}>
-                    <Caption style={styles.capacity}>
-                      {item.personsNumber}x
-                    </Caption>
-                    <PersonIcon style={styles.personIcon} />
-                  </View>
-                ) : null}
-              </View>
-            </Card.Content>
-          </Card>
-        )}
-      />
-    </View>
+              <Card.Content style={styles.cardContent}>
+                <Title style={styles.price}>{item.price}</Title>
+                <View style={styles.icons}>
+                  {item.wifi ? <WifiIcon style={styles.icon} /> : null}
+                  {item.datashow ? <DatashowIcon style={styles.icon} /> : null}
+                  {item.board ? <BoardIcon style={styles.icon} /> : null}
+                  {item.audio ? <AudioIcon style={styles.icon} /> : null}
+                  {item.cooling ? <CoolingIcon style={styles.icon} /> : null}
+                  {item.chairs ? <ChairIcon style={styles.icon} /> : null}
+                  {item.stage ? <StageIcon style={styles.icon} /> : null}
+                  {item.personsNumber ? (
+                    <View style={styles.capacityContent}>
+                      <Caption style={styles.capacity}>
+                        {item.personsNumber}x
+                      </Caption>
+                      <PersonIcon style={styles.personIcon} />
+                    </View>
+                  ) : null}
+                </View>
+              </Card.Content>
+            </Card>
+          )}
+        />
+      </Animated.View>
+    </Animated.View>
   );
 }
 

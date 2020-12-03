@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import Spaces from '../components/Spaces';
+import Spaces2 from '../components/Spaces2';
 import Room from '../components/Room';
 
 const SpacesStack = createStackNavigator();
@@ -14,7 +14,7 @@ export default function SpacesStackScreen({setBarHeight}) {
         options={{
           headerShown: false,
         }}>
-        {(props) => <Spaces {...props} setBarHeight={setBarHeight} />}
+        {(props) => <Spaces2 {...props} setBarHeight={setBarHeight} />}
       </SpacesStack.Screen>
       <SpacesStack.Screen
         name="Room"

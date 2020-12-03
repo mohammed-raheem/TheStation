@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import {Image, TouchableOpacity} from 'react-native';
 import {Caption, useTheme, Title, Paragraph} from 'react-native-paper';
+import {useIsFocused} from '@react-navigation/native';
 
 import ArrowIcon from '../assets/icons/ArrowIcon';
 import ShareIcon from '../assets/icons/ShareIcon';
@@ -9,6 +10,10 @@ import CalenderIcon from '../assets/icons/CalenderIcon';
 import UserIcon from '../assets/icons/UserIcon';
 
 function SingleNews({navigation, setBarHeight}) {
+  const isFocused = useIsFocused();
+
+  isFocused && setBarHeight(0);
+
   const {colors, fonts} = useTheme();
   const styles = StyleSheet.create({
     singleNewsPage: {

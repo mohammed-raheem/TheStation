@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import 'react-native-get-random-values';
 import {nanoid} from 'nanoid';
-import {LogBox} from 'react-native';
+import {LogBox, StatusBar} from 'react-native';
 LogBox.ignoreAllLogs();
 import {
   Image,
@@ -108,6 +108,8 @@ export default class News3 extends React.Component {
   }
 
   render() {
+    const {isFocused} = this.props;
+    isFocused && this.props.setBarHeight(65);
     const styles = StyleSheet.create({
       // FIXME: Fix the masonry issue
       newsPage: {

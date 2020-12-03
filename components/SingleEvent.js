@@ -16,6 +16,7 @@ import ClockIcon from '../assets/icons/ClockIcon';
 import CalenderIcon from '../assets/icons/CalenderIcon';
 import PriceIcon from '../assets/icons/PriceIcon';
 import SingleEventVector from '../assets/SingleEventVector';
+import MainButton from './elements/MainButton';
 
 function SingleEvent({navigation, setBarHeight}) {
   const {colors, fonts} = useTheme();
@@ -158,7 +159,8 @@ function SingleEvent({navigation, setBarHeight}) {
             rationally encounter consequences that are extremely painful. Nor
             again is there anyone who loves or pursues or desires
           </Paragraph>
-          <Button
+          <MainButton title="Book now - " subTitle="free" />
+          {/* <Button
             mode="contained"
             uppercase={false}
             style={{height: 48, marginBottom: 35, justifyContent: 'center'}}
@@ -169,7 +171,7 @@ function SingleEvent({navigation, setBarHeight}) {
             }}
             onPress={() => console.log('Pressed')}>
             Book now - <Caption style={styles.btnFree}>free</Caption>
-          </Button>
+          </Button> */}
         </View>
       </View>
     </ScrollView>

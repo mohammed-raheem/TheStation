@@ -1,121 +1,166 @@
-/* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import {Image, Text, View, Dimensions, RefreshControl} from 'react-native';
-import Masonry from 'react-native-masonry-layout';
+import React, {useRef} from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Image,
+  View,
+  Text,
+  Animated,
+} from 'react-native';
+import faker from 'faker';
 
-const {width} = Dimensions.get('window');
-const columnWidth = (width - 10) / 2 - 10;
+const HEADER_MAX_HEIGHT = 240;
+const HEADER_MIN_HEIGHT = 84;
+const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
-export default class Example extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      withHeight: false,
-      loading: false,
-    };
-  }
+const DATA = Array(10)
+  .fill(null)
+  .map((_, idx) => ({
+    id: idx,
+    avatar: faker.image.avatar(),
+    fullName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+  }));
 
-  componentDidMount() {
-    this.load();
-  }
+function Test() {
+  const scrollY = useRef(new Animated.Value(0)).current;
 
-  load() {
-    this.setState({loading: true});
-    fetch('http://huaban.com/boards/17649987/?limit=10', {
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({loading: false});
-        data = data.board.pins.map((item) => {
-          return {
-            image: 'http://img.hb.aicdn.com/' + item.file.key,
-            text: item.raw_text,
-            key: item.file.key,
-            height: (columnWidth / item.file.width) * item.file.height,
-          };
-        });
-        if (this.state.withHeight) {
-          this.refs.list.addItemsWithHeight(data);
-        } else {
-          this.refs.list.addItems(data);
-        }
-      });
-  }
+  const headerTranslateY = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE],
+    outputRange: [0, -HEADER_SCROLL_DISTANCE],
+    extrapolate: 'clamp',
+  });
 
-  onScrollEnd(event) {
-    const scrollHeight = Math.floor(
-      event.nativeEvent.contentOffset.y +
-        event.nativeEvent.layoutMeasurement.height,
-    );
-    const height = Math.floor(event.nativeEvent.contentSize.height);
-    if (scrollHeight >= height) {
-      this.load();
-    }
-  }
+  const imageOpacity = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+    outputRange: [1, 1, 0],
+    extrapolate: 'clamp',
+  });
+  const imageTranslateY = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE],
+    outputRange: [0, 100],
+    extrapolate: 'clamp',
+  });
 
-  render() {
-    return (
-      <View style={{flex: 1, backgroundColor: '#EEE'}}>
-        <Masonry
-          onMomentumScrollEnd={this.onScrollEnd.bind(this)}
-          style={{flex: 1, borderWidth: 1, borderColor: 'red'}}
-          columns={2}
-          ref="list"
-          containerStyle={{padding: 5}}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.isRefreshing}
-              onRefresh={this._onRefresh}
-              tintColor="#ff0000"
-              title="Loading..."
-              titleColor="#00ff00"
-              colors={['#ff0000', '#00ff00', '#0000ff']}
-              progressBackgroundColor="#ffff00"
-            />
-          }
-          renderItem={(item) => (
-            <View
-              style={{
-                margin: 5,
-                backgroundColor: '#fff',
-                borderRadius: 5,
-                overflow: 'hidden',
-                borderWidth: 1,
-                borderColor: '#dedede',
-              }}>
-              <Image source={{uri: item.image}} style={{height: item.height}} />
-              <Text style={{padding: 5, color: '#444'}}>{item.text}</Text>
-            </View>
-          )}
+  const titleScale = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+    outputRange: [1, 1, 0.9],
+    extrapolate: 'clamp',
+  });
+  const titleTranslateY = scrollY.interpolate({
+    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+    outputRange: [0, 0, -8],
+    extrapolate: 'clamp',
+  });
+
+  const renderListItem = (item) => (
+    <View key={item.id} style={styles.card}>
+      <Image style={styles.avatar} source={{uri: item.avatar}} />
+      <Text style={styles.fullNameText}>{item.fullName}</Text>
+    </View>
+  );
+
+  return (
+    <SafeAreaView style={styles.saveArea}>
+      <Animated.ScrollView
+        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT - 32}}
+        scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [{nativeEvent: {contentOffset: {y: scrollY}}}],
+          {useNativeDriver: true},
+        )}>
+        {DATA.map(renderListItem)}
+      </Animated.ScrollView>
+      <Animated.View
+        style={[styles.header, {transform: [{translateY: headerTranslateY}]}]}>
+        <Animated.Image
+          style={[
+            styles.headerBackground,
+            {
+              opacity: imageOpacity,
+              transform: [{translateY: imageTranslateY}],
+            },
+          ]}
+          source={require('./assets/management.jpg')}
         />
-
-        {this.state.loading && (
-          <View
-            style={{
-              position: 'absolute',
-              justifyContent: 'center',
-              alignItems: 'center',
-              top: 0,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              backgroundColor: 'rgba(0,0,0,0.3)',
-            }}>
-            <Text
-              style={{
-                backgroundColor: '#fff',
-                paddingVertical: 20,
-                paddingHorizontal: 30,
-                borderRadius: 10,
-              }}>
-              加载中
-            </Text>
-          </View>
-        )}
-      </View>
-    );
-  }
+      </Animated.View>
+      <Animated.View
+        style={[
+          styles.topBar,
+          {
+            transform: [{scale: titleScale}, {translateY: titleTranslateY}],
+          },
+        ]}>
+        <Text style={styles.title}>Management</Text>
+      </Animated.View>
+    </SafeAreaView>
+  );
 }
+
+const styles = StyleSheet.create({
+  saveArea: {
+    flex: 1,
+    backgroundColor: '#eff3fb',
+  },
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: '#402583',
+    backgroundColor: '#ffffff',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 1,
+    borderRadius: 10,
+    marginHorizontal: 12,
+    marginTop: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  header: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#62d1bc',
+    overflow: 'hidden',
+    height: HEADER_MAX_HEIGHT,
+  },
+  headerBackground: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    width: null,
+    height: HEADER_MAX_HEIGHT,
+    resizeMode: 'cover',
+  },
+  topBar: {
+    marginTop: 40,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+  },
+  title: {
+    color: 'white',
+    fontSize: 20,
+  },
+  avatar: {
+    height: 54,
+    width: 54,
+    resizeMode: 'contain',
+    borderRadius: 54 / 2,
+  },
+  fullNameText: {
+    fontSize: 16,
+    marginLeft: 24,
+  },
+});
+
+export default Test;

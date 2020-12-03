@@ -1,20 +1,22 @@
 import * as React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {Appbar, Title, Subheading, Caption} from 'react-native-paper';
+import {View, StyleSheet, Animated} from 'react-native';
+import {Title, Subheading} from 'react-native-paper';
 import RNPickerSelect from 'react-native-picker-select';
 import {useTheme} from 'react-native-paper';
 
 const AppBar = (props) => {
-  const [branch, setBranch] = React.useState('Baghdad');
+  // const [branch, setBranch] = React.useState('Baghdad');
   const {colors, fonts} = useTheme();
 
   const styles = StyleSheet.create({
     appBar: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      marginBottom: 30,
       paddingTop: 20,
+      paddingBottom: 20,
+      paddingRight: 24,
+      paddingLeft: 24,
+      backgroundColor: '#fff',
+
+      // marginBottom: 20,
     },
     title: {
       color: colors.titleColor,
@@ -28,19 +30,25 @@ const AppBar = (props) => {
       fontSize: 18,
       marginTop: 0,
     },
-    branchPicker: {
-      width: 140,
-    },
+    // branchPicker: {
+    //   width: 140,
+    // },
   });
 
   return (
     <View style={styles.appBar}>
-      <View style={styles.titleBox}>
-        <Title style={styles.title}>{props.title}</Title>
+      <Animated.View style={styles.titleBox}>
+        <Animated.View style={{transform: [{translateY: props.titleScale2}]}}>
+          <Title style={styles.title}>{props.title}</Title>
+        </Animated.View>
         {props.subHeading ? (
-          <Subheading style={styles.subHeading}>{props.subHeading}</Subheading>
+          <Animated.View style={{transform: [{scaleY: props.titleScale}]}}>
+            <Subheading style={styles.subHeading}>
+              {props.subHeading}
+            </Subheading>
+          </Animated.View>
         ) : null}
-      </View>
+      </Animated.View>
 
       {/* FIXME: Fix this Picker */}
       {/* <View style={styles.branchPicker}>

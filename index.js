@@ -1,7 +1,8 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {AppRegistry} from 'react-native';
+import {AppRegistry, StatusBar} from 'react-native';
+// import RootViewBackgroundColor from 'react-native-root-view-background-color';
 import {
   DefaultTheme,
   configureFonts,
@@ -35,9 +36,11 @@ const theme = {
 };
 
 export default function Main() {
+  // RootViewBackgroundColor.setBackground(255, 255, 255, 1);
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer>
+        <StatusBar barStyle="light-content" backgroundColor="#000" />
         <App />
       </NavigationContainer>
     </PaperProvider>
