@@ -99,19 +99,19 @@ function WithEvents2({navigation, setBarHeight}) {
     },
     events: {
       backgroundColor: '#fff',
-      paddingLeft: 20,
-      paddingRight: 20,
+      paddingLeft: 15,
+      paddingRight: 15,
       paddingBottom: 100,
     },
     cardContainer: {
       marginBottom: 24,
-      shadowColor: '#000',
+      shadowColor: '#eee',
       shadowOffset: {
         width: 0,
         height: 2,
       },
       shadowOpacity: 0.08,
-      elevation: 4,
+      elevation: 2,
     },
     cardTitle: {
       fontSize: 16,

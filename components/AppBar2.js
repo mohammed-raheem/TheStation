@@ -12,8 +12,8 @@ const AppBar = (props) => {
     appBar: {
       paddingTop: 20,
       paddingBottom: 20,
-      paddingRight: 24,
-      paddingLeft: 24,
+      paddingRight: 15,
+      paddingLeft: 15,
       backgroundColor: '#fff',
 
       // marginBottom: 20,

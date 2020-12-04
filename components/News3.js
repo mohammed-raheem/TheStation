@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import 'react-native-get-random-values';
 import {nanoid} from 'nanoid';
-import {LogBox, StatusBar} from 'react-native';
+import {LogBox, StatusBar, TouchableOpacity} from 'react-native';
 LogBox.ignoreAllLogs();
 import {
   Image,
@@ -126,7 +126,7 @@ export default class News3 extends React.Component {
       },
       newsCard: {
         marginBottom: 10,
-        width: '50%',
+        width: '95%',
       },
       cardContent: {
         position: 'absolute',
@@ -177,25 +177,27 @@ export default class News3 extends React.Component {
             />
           }
           renderItem={(item) => (
-            <Card
+            <TouchableOpacity
               style={styles.newsCard}
               onPress={() => {
                 this.props.navigation.navigate('SingleNews');
                 this.props.setBarHeight(0);
               }}>
-              <Image style={styles.cardImage} source={item.image} />
-              <View style={styles.cardContent}>
-                <Title style={styles.cardTitle}>{item.title}</Title>
-                <View style={styles.cardDate}>
-                  <CalenderIcon
-                    width="9.72"
-                    height="9.07"
-                    style={styles.calendar}
-                  />
-                  <Caption style={styles.cardCaption}>{item.date}</Caption>
+              <Card>
+                <Image style={styles.cardImage} source={item.image} />
+                <View style={styles.cardContent}>
+                  <Title style={styles.cardTitle}>{item.title}</Title>
+                  <View style={styles.cardDate}>
+                    <CalenderIcon
+                      width="9.72"
+                      height="9.07"
+                      style={styles.calendar}
+                    />
+                    <Caption style={styles.cardCaption}>{item.date}</Caption>
+                  </View>
                 </View>
-              </View>
-            </Card>
+              </Card>
+            </TouchableOpacity>
           )}
         />
 

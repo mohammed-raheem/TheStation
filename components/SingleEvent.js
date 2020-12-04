@@ -24,6 +24,7 @@ function SingleEvent({navigation, setBarHeight}) {
     singleEventPage: {
       backgroundColor: '#fff',
       flex: 1,
+      position: 'relative',
     },
     headerBg: {
       width: '100%',
@@ -98,6 +99,13 @@ function SingleEvent({navigation, setBarHeight}) {
       marginBottom: 40,
       lineHeight: 22,
     },
+    bookBtn: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      height: 55,
+    },
     btnFree: {
       fontFamily: fonts.book.fontFamily,
       color: '#000',
@@ -106,8 +114,8 @@ function SingleEvent({navigation, setBarHeight}) {
   });
 
   return (
-    <ScrollView>
-      <View style={styles.singleEventPage}>
+    <View style={styles.singleEventPage}>
+      <ScrollView>
         <View style={styles.header}>
           <Image
             style={styles.headerBg}
@@ -159,7 +167,7 @@ function SingleEvent({navigation, setBarHeight}) {
             rationally encounter consequences that are extremely painful. Nor
             again is there anyone who loves or pursues or desires
           </Paragraph>
-          <MainButton title="Book now - " subTitle="free" />
+
           {/* <Button
             mode="contained"
             uppercase={false}
@@ -173,8 +181,11 @@ function SingleEvent({navigation, setBarHeight}) {
             Book now - <Caption style={styles.btnFree}>free</Caption>
           </Button> */}
         </View>
+      </ScrollView>
+      <View style={styles.bookBtn}>
+        <MainButton title="Book now - " subTitle="free" />
       </View>
-    </ScrollView>
+    </View>
   );
 }
 

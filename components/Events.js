@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import WithEvents from './WithEvents';
+import WithEvents from './WithEvents2';
 import NoEvents from './NoEvents';
 
 function Events() {

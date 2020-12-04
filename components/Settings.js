@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Image} from 'react-native';
+import {Image, TouchableOpacity} from 'react-native';
 import {
   Caption,
   useTheme,
@@ -26,8 +26,8 @@ function Settings(props) {
     settingsPage: {
       backgroundColor: '#fff',
       flex: 1,
-      paddingLeft: 20,
-      paddingRight: 20,
+      paddingLeft: 15,
+      paddingRight: 15,
     },
     userDetails: {
       flexDirection: 'row',
@@ -77,18 +77,16 @@ function Settings(props) {
           <View style={styles.userInfo}>
             <Title style={styles.userName}>Ali Hamandi</Title>
             <Caption style={styles.userEmail}>Hamandi@solostudio.co</Caption>
-            <Button
-              mode="text"
-              uppercase={false}
-              labelStyle={{
+            <TouchableOpacity
+              style={{
                 fontFamily: fonts.book.fontFamily,
                 color: '#404040',
                 marginLeft: 0,
+                alignSelf: 'flex-start',
               }}
-              style={{alignSelf: 'flex-start'}}
               onPress={() => console.log('edit profile')}>
-              Edit Profile
-            </Button>
+              <Text>Edit Profile</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

@@ -10,7 +10,7 @@ function MainButton(props) {
       backgroundColor: colors.primary,
       justifyContent: 'center',
       alignItems: 'center',
-      height: 45,
+      height: 55,
       marginBottom: 25,
     },
     btnTitle: {

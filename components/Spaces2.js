@@ -120,8 +120,8 @@ function Spaces({navigation, setBarHeight}) {
       // marginBottom: -40,
     },
     spaces: {
-      paddingLeft: 20,
-      paddingRight: 20,
+      paddingLeft: 15,
+      paddingRight: 15,
       paddingBottom: 160,
       backgroundColor: '#fff',
     },
@@ -130,10 +130,11 @@ function Spaces({navigation, setBarHeight}) {
       shadowColor: '#000',
       shadowOffset: {
         width: 0,
-        height: 2,
+        height: 6,
       },
-      shadowOpacity: 0.08,
-      elevation: 4,
+      shadowOpacity: 0.39,
+      shadowRadius: 8.3,
+      elevation: 13,
     },
     roomFigure: {
       position: 'absolute',

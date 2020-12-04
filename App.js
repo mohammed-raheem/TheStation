@@ -30,7 +30,12 @@ function App() {
     <Tab.Navigator
       initialRouteName="News"
       activeColor="#3D3A37"
-      barStyle={{paddingTop: 10, paddingBottom: 10, height: barHeight}}>
+      barStyle={{
+        paddingTop: barHeight === 0 ? 0 : 10,
+        paddingBottom: barHeight === 0 ? 0 : 10,
+        height: barHeight,
+        backgroundColor: '#fff',
+      }}>
       <Tab.Screen
         name="News"
         // component={NewsStackScreen}
