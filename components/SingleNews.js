@@ -95,6 +95,10 @@ function SingleNews({navigation, setBarHeight}) {
       marginBottom: 40,
       lineHeight: 22,
     },
+    contentImage: {
+      marginBottom: 10,
+      alignSelf: 'center',
+    },
   });
 
   return (
@@ -152,7 +156,7 @@ function SingleNews({navigation, setBarHeight}) {
             Jack!" my brave ghost
           </Paragraph>
           <Image
-            style={{marginBottom: 10}}
+            style={styles.contentImage}
             source={require('../assets/images/news-hall.jpg')}
           />
         </View>

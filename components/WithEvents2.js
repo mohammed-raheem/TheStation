@@ -1,5 +1,11 @@
 import React, {useState, useRef} from 'react';
-import {View, FlatList, StyleSheet, Animated} from 'react-native';
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  Animated,
+  TouchableHighlight,
+} from 'react-native';
 import {Caption, useTheme, Title, Card} from 'react-native-paper';
 import {useIsFocused} from '@react-navigation/native';
 
@@ -10,10 +16,6 @@ import PriceIcon from '../assets/icons/PriceIcon';
 import Squares from '../assets/Squares';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-
-// const HEADER_MAX_HEIGHT = 90;
-// const HEADER_MIN_HEIGHT = 70;
-// const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
 function WithEvents2({navigation, setBarHeight}) {
   const isFocused = useIsFocused();
@@ -104,14 +106,15 @@ function WithEvents2({navigation, setBarHeight}) {
       paddingBottom: 100,
     },
     cardContainer: {
-      marginBottom: 24,
-      shadowColor: '#eee',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.08,
-      elevation: 2,
+      marginBottom: 15,
+      // shadowColor: '#eee',
+      // shadowOffset: {
+      //   width: 0,
+      //   height: 2,
+      // },
+      // shadowOpacity: 0.08,
+      // elevation: 2,
+      borderRadius: 5,
     },
     cardTitle: {
       fontSize: 16,
@@ -166,34 +169,36 @@ function WithEvents2({navigation, setBarHeight}) {
             {useNativeDriver: true},
           )}
           renderItem={({item}) => (
-            <Card
+            <TouchableHighlight
               style={styles.cardContainer}
               onPress={() => {
                 navigation.navigate('SingleEvent');
                 setBarHeight(0);
               }}>
-              <Card.Cover source={item.imageUrl} />
-              <Card.Content>
-                <Title style={styles.cardTitle}>{item.title}</Title>
-                <View style={styles.captionContainer}>
-                  <View style={styles.caption}>
-                    <ClockIcon />
-                    <Caption style={styles.captionText}>{item.time}</Caption>
+              <Card>
+                <Card.Cover source={item.imageUrl} />
+                <Card.Content>
+                  <Title style={styles.cardTitle}>{item.title}</Title>
+                  <View style={styles.captionContainer}>
+                    <View style={styles.caption}>
+                      <ClockIcon />
+                      <Caption style={styles.captionText}>{item.time}</Caption>
+                    </View>
+                    <View style={styles.caption}>
+                      <CalenderIcon width="10" height="9.25" color="#4C4C4C" />
+                      <Caption style={styles.captionText}>{item.date}</Caption>
+                    </View>
+                    <View style={styles.caption}>
+                      <PriceIcon />
+                      <Caption style={styles.captionText}>{item.price}</Caption>
+                    </View>
                   </View>
-                  <View style={styles.caption}>
-                    <CalenderIcon width="10" height="9.25" color="#4C4C4C" />
-                    <Caption style={styles.captionText}>{item.date}</Caption>
-                  </View>
-                  <View style={styles.caption}>
-                    <PriceIcon />
-                    <Caption style={styles.captionText}>{item.price}</Caption>
-                  </View>
+                </Card.Content>
+                <View style={styles.squares}>
+                  <Squares />
                 </View>
-              </Card.Content>
-              <View style={styles.squares}>
-                <Squares />
-              </View>
-            </Card>
+              </Card>
+            </TouchableHighlight>
           )}
         />
       </Animated.View>

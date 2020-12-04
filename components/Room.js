@@ -18,6 +18,7 @@ import PersonIcon from '../assets/icons/PersonIcon';
 import StageIcon from '../assets/icons/StageIcon';
 import ChairIcon from '../assets/icons/ChairIcon';
 import DatashowIcon from '../assets/icons/DatashowIcon';
+import MainButton from './elements/MainButton';
 
 function Room({navigation, setBarHeight}) {
   const {colors, fonts} = useTheme();
@@ -75,6 +76,7 @@ function Room({navigation, setBarHeight}) {
       marginTop: 28,
       marginLeft: 18,
       marginRight: 18,
+      marginBottom: 20,
     },
     bodyTitle: {
       fontFamily: fonts.bold.fontFamily,
@@ -110,6 +112,13 @@ function Room({navigation, setBarHeight}) {
       marginTop: 10,
       textAlign: 'center',
     },
+    bookBtn: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      height: 55,
+    },
     Btn: {
       flexDirection: 'row',
       backgroundColor: colors.primary,
@@ -132,8 +141,8 @@ function Room({navigation, setBarHeight}) {
   });
 
   return (
-    <ScrollView>
-      <View style={styles.roomPage}>
+    <View style={styles.roomPage}>
+      <ScrollView>
         <View style={styles.header}>
           <Image
             style={styles.headerBg}
@@ -245,7 +254,7 @@ function Room({navigation, setBarHeight}) {
               <Text style={styles.iconDesc}>Stage</Text>
             </View>
           </View>
-          <Pressable
+          {/* <Pressable
             style={({pressed}) => [
               {
                 opacity: pressed ? 0.9 : 1,
@@ -262,27 +271,13 @@ function Room({navigation, setBarHeight}) {
             onPress={console.log('Pressed')}>
             <Text style={styles.btnTitle}>Book now - </Text>
             <Caption style={styles.btnSubTitle}>2,000,000 IQD per hour</Caption>
-          </Pressable>
-          {/* <TouchableOpacity onPress={() => console.log('Pressed')}>
-            <Button
-              mode="contained"
-              uppercase={false}
-              style={{
-                marginBottom: 35,
-                justifyContent: 'center',
-              }}
-              labelStyle={{
-                fontFamily: fonts.bold.fontFamily,
-                color: '#3D3A37',
-                fontSize: 16,
-              }}>
-              Book now -{' '}
-              <Caption style={styles.btnFree}>2,000,000 IQD per hour</Caption>
-            </Button>
-          </TouchableOpacity> */}
+          </Pressable> */}
         </View>
+      </ScrollView>
+      <View style={styles.bookBtn}>
+        <MainButton title="Book now - " subTitle="2,000,000 IQD per hour" />
       </View>
-    </ScrollView>
+    </View>
   );
 }
 

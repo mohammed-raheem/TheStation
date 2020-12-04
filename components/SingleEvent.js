@@ -167,19 +167,6 @@ function SingleEvent({navigation, setBarHeight}) {
             rationally encounter consequences that are extremely painful. Nor
             again is there anyone who loves or pursues or desires
           </Paragraph>
-
-          {/* <Button
-            mode="contained"
-            uppercase={false}
-            style={{height: 48, marginBottom: 35, justifyContent: 'center'}}
-            labelStyle={{
-              fontFamily: fonts.bold.fontFamily,
-              color: '#3D3A37',
-              fontSize: 16,
-            }}
-            onPress={() => console.log('Pressed')}>
-            Book now - <Caption style={styles.btnFree}>free</Caption>
-          </Button> */}
         </View>
       </ScrollView>
       <View style={styles.bookBtn}>

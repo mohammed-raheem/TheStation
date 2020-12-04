@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {useTheme, Text} from 'react-native-paper';
 import {StyleSheet} from 'react-native';
+import {CardStyleInterpolators} from '@react-navigation/stack';
 
 import NewsIcon from './assets/icons/NewsIcon';
 import EventsIcon from './assets/icons/EventsIcon';
@@ -44,6 +45,8 @@ function App() {
           tabBarLabel: <Text style={styles.label}>News</Text>,
           tabBarColor: '#fff',
           tabBarIcon: ({color}) => <NewsIcon color={color} />,
+          cardStyleInterpolator:
+            CardStyleInterpolators.forFadeFromBottomAndroid,
         }}
       />
       <Tab.Screen
@@ -54,6 +57,8 @@ function App() {
           tabBarLabel: <Text style={styles.label}>Events</Text>,
           tabBarColor: '#fff',
           tabBarIcon: ({color}) => <EventsIcon color={color} />,
+          cardStyleInterpolator:
+            CardStyleInterpolators.forFadeFromBottomAndroid,
         }}
       />
       <Tab.Screen
@@ -64,6 +69,8 @@ function App() {
           tabBarLabel: <Text style={styles.label}>Spaces</Text>,
           tabBarColor: '#fff',
           tabBarIcon: ({color}) => <SpacesIcon color={color} />,
+          cardStyleInterpolator:
+            CardStyleInterpolators.forFadeFromBottomAndroid,
         }}
       />
       <Tab.Screen
@@ -73,6 +80,8 @@ function App() {
           tabBarLabel: <Text style={styles.label}>Settings</Text>,
           tabBarColor: '#fff',
           tabBarIcon: ({color}) => <SettingsIcon color={color} />,
+          cardStyleInterpolator:
+            CardStyleInterpolators.forFadeFromBottomAndroid,
         }}
       />
     </Tab.Navigator>

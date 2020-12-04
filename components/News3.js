@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import 'react-native-get-random-values';
 import {nanoid} from 'nanoid';
-import {LogBox, StatusBar, TouchableOpacity} from 'react-native';
+import {LogBox, StatusBar, TouchableHighlight} from 'react-native';
 LogBox.ignoreAllLogs();
 import {
   Image,
@@ -115,17 +115,14 @@ export default class News3 extends React.Component {
       newsPage: {
         backgroundColor: 'white',
         flex: 1,
-        paddingLeft: 24,
-        paddingRight: 24,
-      },
-      news: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        flexWrap: 'wrap',
+        // justifyContent: 'space-between',
+        // alignItems: 'center',
+        paddingLeft: 15,
+        paddingRight: 15,
       },
       newsCard: {
         marginBottom: 10,
+
         width: '95%',
       },
       cardContent: {
@@ -164,7 +161,7 @@ export default class News3 extends React.Component {
           columns={2}
           showsVerticalScrollIndicator={false}
           ref="list"
-          // containerStyle={{padding: 15}}
+          containerStyle={{justifyContent: 'space-between'}}
           refreshControl={
             <RefreshControl
               refreshing={this.state.isRefreshing}
@@ -177,14 +174,14 @@ export default class News3 extends React.Component {
             />
           }
           renderItem={(item) => (
-            <TouchableOpacity
+            <TouchableHighlight
               style={styles.newsCard}
               onPress={() => {
                 this.props.navigation.navigate('SingleNews');
                 this.props.setBarHeight(0);
               }}>
               <Card>
-                <Image style={styles.cardImage} source={item.image} />
+                <Image style={{width: '100%'}} source={item.image} />
                 <View style={styles.cardContent}>
                   <Title style={styles.cardTitle}>{item.title}</Title>
                   <View style={styles.cardDate}>
@@ -197,7 +194,7 @@ export default class News3 extends React.Component {
                   </View>
                 </View>
               </Card>
-            </TouchableOpacity>
+            </TouchableHighlight>
           )}
         />
 

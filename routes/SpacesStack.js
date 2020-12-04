@@ -1,5 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import {CardStyleInterpolators} from '@react-navigation/stack';
 
 import Spaces2 from '../components/Spaces2';
 import Room from '../components/Room';
@@ -20,6 +21,8 @@ export default function SpacesStackScreen({setBarHeight}) {
         name="Room"
         options={{
           headerShown: false,
+          cardStyleInterpolator:
+            CardStyleInterpolators.forFadeFromBottomAndroid,
         }}>
         {(props) => <Room {...props} setBarHeight={setBarHeight} />}
       </SpacesStack.Screen>

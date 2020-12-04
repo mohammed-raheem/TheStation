@@ -1,6 +1,8 @@
 import React from 'react';
+import {Animated} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useIsFocused} from '@react-navigation/native';
+import {TransitionPresets} from '@react-navigation/stack';
 
 import News3 from '../components/News3';
 import SingleNews from '../components/SingleNews';
@@ -28,6 +30,7 @@ export default function NewsStackScreen({setBarHeight}) {
         // component={SingleNews}
         options={{
           headerShown: false,
+          ...TransitionPresets.ScaleFromCenterAndroid,
         }}>
         {(props) => <SingleNews {...props} setBarHeight={setBarHeight} />}
       </NewsStack.Screen>

@@ -1,5 +1,11 @@
 import React, {useState, useRef} from 'react';
-import {View, FlatList, StyleSheet, Animated} from 'react-native';
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  Animated,
+  TouchableHighlight,
+} from 'react-native';
 import {Caption, useTheme, Title, Card, Text} from 'react-native-paper';
 import {useIsFocused} from '@react-navigation/native';
 
@@ -126,15 +132,16 @@ function Spaces({navigation, setBarHeight}) {
       backgroundColor: '#fff',
     },
     cardContainer: {
-      marginBottom: 24,
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 6,
-      },
-      shadowOpacity: 0.39,
-      shadowRadius: 8.3,
-      elevation: 13,
+      marginBottom: 15,
+      borderRadius: 5,
+      // shadowColor: '#000',
+      // shadowOffset: {
+      //   width: 0,
+      //   height: 6,
+      // },
+      // shadowOpacity: 0.39,
+      // shadowRadius: 8.3,
+      // elevation: 13,
     },
     roomFigure: {
       position: 'absolute',
@@ -217,40 +224,44 @@ function Spaces({navigation, setBarHeight}) {
             {useNativeDriver: true},
           )}
           renderItem={({item}) => (
-            <Card
+            <TouchableHighlight
               style={styles.cardContainer}
               onPress={() => {
                 navigation.navigate('Room');
                 setBarHeight(0);
               }}>
-              <Card.Cover source={item.imageUrl} />
-              <View style={styles.roomFigure}>
-                <View style={styles.roomBg}></View>
-                <View style={styles.roomName}>
-                  <Text style={styles.room}>{item.roomName}</Text>
+              <Card>
+                <Card.Cover source={item.imageUrl} />
+                <View style={styles.roomFigure}>
+                  <View style={styles.roomBg}></View>
+                  <View style={styles.roomName}>
+                    <Text style={styles.room}>{item.roomName}</Text>
+                  </View>
                 </View>
-              </View>
-              <Card.Content style={styles.cardContent}>
-                <Title style={styles.price}>{item.price}</Title>
-                <View style={styles.icons}>
-                  {item.wifi ? <WifiIcon style={styles.icon} /> : null}
-                  {item.datashow ? <DatashowIcon style={styles.icon} /> : null}
-                  {item.board ? <BoardIcon style={styles.icon} /> : null}
-                  {item.audio ? <AudioIcon style={styles.icon} /> : null}
-                  {item.cooling ? <CoolingIcon style={styles.icon} /> : null}
-                  {item.chairs ? <ChairIcon style={styles.icon} /> : null}
-                  {item.stage ? <StageIcon style={styles.icon} /> : null}
-                  {item.personsNumber ? (
-                    <View style={styles.capacityContent}>
-                      <Caption style={styles.capacity}>
-                        {item.personsNumber}x
-                      </Caption>
-                      <PersonIcon style={styles.personIcon} />
-                    </View>
-                  ) : null}
-                </View>
-              </Card.Content>
-            </Card>
+                <Card.Content style={styles.cardContent}>
+                  <Title style={styles.price}>{item.price}</Title>
+                  <View style={styles.icons}>
+                    {item.wifi ? <WifiIcon style={styles.icon} /> : null}
+                    {item.datashow ? (
+                      <DatashowIcon style={styles.icon} />
+                    ) : null}
+                    {item.board ? <BoardIcon style={styles.icon} /> : null}
+                    {item.audio ? <AudioIcon style={styles.icon} /> : null}
+                    {item.cooling ? <CoolingIcon style={styles.icon} /> : null}
+                    {item.chairs ? <ChairIcon style={styles.icon} /> : null}
+                    {item.stage ? <StageIcon style={styles.icon} /> : null}
+                    {item.personsNumber ? (
+                      <View style={styles.capacityContent}>
+                        <Caption style={styles.capacity}>
+                          {item.personsNumber}x
+                        </Caption>
+                        <PersonIcon style={styles.personIcon} />
+                      </View>
+                    ) : null}
+                  </View>
+                </Card.Content>
+              </Card>
+            </TouchableHighlight>
           )}
         />
       </Animated.View>
